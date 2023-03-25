@@ -64,7 +64,7 @@ const CardItem = ({
   owner,
   status,
   date }: CardItem) => {
-  return <div className="w-full flex py-[14px] px-4 h-[70px] border border-black rounded-[5px]">
+  return <Card className="w-full flex py-[14px] px-4">
     <div className="text-black min-w-[72px]">
       <Image
         src={clientLogo}
@@ -95,7 +95,7 @@ const CardItem = ({
     <div className="min-w-[150px] flex items-center">
       <CardLabel status={status} />
     </div>
-  </div>
+  </Card>
 }
 
 export default function Home() {
@@ -288,7 +288,7 @@ export default function Home() {
               />
             </header>
             <section>
-              <Card className="flex py-[14px] px-4 border border-black mb-[13px] ">
+              <Card className="flex py-[14px] px-4 mb-[13px] ">
                 <div className="text-black text-sm min-w-[72px]">
                   <Text type="sub">Clients</Text>
                 </div>
@@ -334,7 +334,7 @@ export default function Home() {
                 />
               </main>
               <footer>
-                <Text type="main" className="text-[#1E67AF]">See all approvals here</Text>
+                <Text type="main" className="!text-[#1E67AF]">See all approvals here</Text>
               </footer>
             </section>
           </article>
