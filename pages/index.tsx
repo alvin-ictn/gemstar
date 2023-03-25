@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
 import cx from "classnames";
+import Card from '@/components/Card';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -105,10 +106,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="flex h-[65px]">
-        <aside className="min-w-[295px] w-[295px] bg-[#B8DCFF] p-[8px_77px_6px_83px]">
+        <aside className="min-w-[295px] w-[295px] bg-[#1E67AF] p-[8px_77px_6px_83px]">
           <p className="text-[40px] leading-[48.41px] h-[51px]">LOGO</p>
         </aside>
-        <section className="flex w-full border border-black drop-shadow-[2px_2px_4px_0px_rgba(0,0,13,1)]">
+        <section className="flex w-full bg-white drop-shadow-[2px_2px_4px_rgba(0,0,0,0.05)]">
           <div className="h-full w-full">
             <input
               className="h-full w-full bg-[33px] outline-none px-[60px] bg-transparent text-black bg-[url('/search-icon.svg')] bg-no-repeat bg-scroll"
@@ -203,7 +204,7 @@ export default function Home() {
               <p className="text-[#323A46] text-sm leading-[19.1px]">You currently servicing 3 clients</p>
             </header>
             <section className="flex gap-[15px] flex-wrap">
-              <div className="w-[259px] h-[184px] border border-black rounded-[5px] p-[21px]">
+              <Card className="w-[259px] h-[184px] p-[21px]">
                 <header className="flex justify-between h-[31px] mb-[9px]">
                   <Image
                     src="/dbs-logo.svg"
@@ -223,8 +224,8 @@ export default function Home() {
                   <p className="text-[#323A46] font-bold text-base leading-[19.66px] mb-[6px]">DBS Bank</p>
                   <p className="text-[#323A46] text-[11px] leading-[15px]">DBS Bank Limited is a Singaporean multinational banking and financial services corporation headquartered at the Marina Bay Financial Centre in the Marina Bay district of Singapore.</p>
                 </article>
-              </div>
-              <div className="w-[259px] h-[184px] border border-black rounded-[5px] p-[21px]">
+              </Card>
+              <Card className="w-[259px] h-[184px] p-[21px]">
                 <header className="flex justify-between h-[31px] mb-[9px] relative">
                   <Image
                     src="/proudfoot-logo.svg"
@@ -245,8 +246,8 @@ export default function Home() {
                   <p className="text-[#323A46] font-bold text-base leading-[19.66px] mb-[6px]">Proudfoot</p>
                   <p className="text-[#323A46] text-[11px] leading-[15px]">Proudfoot engages teams and leadership, at all levels, to create innovative solutions to operational constraints and solve the people challenge associated with making sure that change takes place.</p>
                 </article>
-              </div>
-              <div className="w-[259px] h-[184px] border border-black rounded-[5px] p-[21px]">
+              </Card>
+              <Card className="w-[259px] h-[184px] p-[21px]">
                 <header className="flex justify-between h-[31px] mb-[9px]">
                   <Image
                     src="/rmi-logo.svg"
@@ -266,7 +267,7 @@ export default function Home() {
                   <p className="text-[#323A46] font-bold text-base leading-[19.66px] mb-[6px]">RMI</p>
                   <p className="text-[#323A46] text-[11px] leading-[15px]">RMI is a trusted global verification partner for Asia-Pacific organisations, offering a highly personalised and comprehensive background screening service.</p>
                 </article>
-              </div>
+              </Card>
             </section>
           </article>
           <article>

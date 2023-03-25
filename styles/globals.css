@@ -91,6 +91,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: nunito, sans-serif;
   /* background: linear-gradient(
       to bottom,
       transparent,
