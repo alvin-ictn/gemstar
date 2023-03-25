@@ -141,12 +141,12 @@ export default function Home() {
       </header>
       <main className="flex flex-row">
         <aside className="pt-[56px] bg-white min-w-[295px] w-[295px] px-7 min-h-[calc(100vh_-_65px)] drop-shadow-[2px_2px_4px_rgba(0,0,0,0.05)]">
-          <section className="border-b border-white w-full pb-[29px]">
+          <section className="border-b border-[#DCDCDC] w-full pb-[29px]">
             <div className="h-[63px] w-[63px] rounded-full bg-[#D9D9D9] mb-[17px]"></div>
             <Text type="main">Radhika Dhawan Puri</Text>
             <Text type="sub">Senior Client Services</Text>
           </section>
-          <section className="border-b border-white w-full pt-[29px] pb-[46px]">
+          <section className="border-b border-[#DCDCDC] w-full pt-[29px] pb-[46px]">
             <Text type="small" className="mb-3 uppercase">Navigation</Text>
             <div className="flex flex-col gap-[10px]">
               <div className="flex gap-3">
