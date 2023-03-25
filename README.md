@@ -22,3 +22,7 @@ Open [http://localhost:3000/coinapi](http://localhost:3000/coinapi) with your br
 Visit [https://gemstar-alvin-ictn.vercel.app/](https://gemstar-alvin-ictn.vercel.app/) to access live web
 
 Visit [https://gemstar-alvin-ictn.vercel.app/coinapi](https://gemstar-alvin-ictn.vercel.app/coinapi) to access API Connection Exam
+
+## Figma File
+
+Figma File [https://www.figma.com/file/TcJXvarqMta1O2ZIQ5DYBQ/Frontend-test?node-id=0-1&t=eutBYdBKBQF6fEDR-0](https://www.figma.com/file/TcJXvarqMta1O2ZIQ5DYBQ/Frontend-test?node-id=0-1&t=eutBYdBKBQF6fEDR-0)
