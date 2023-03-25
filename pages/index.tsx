@@ -1,9 +1,99 @@
+import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import cx from "classnames";
 
 const inter = Inter({ subsets: ['latin'] })
+
+type CardLabel = {
+  status: string
+}
+interface CardItem extends CardLabel {
+  clientLogo: string
+  approval: string
+  client: string
+  date: string
+  img: string
+  owner: string
+}
+
+
+const CardLabel = ({ status }: CardLabel) => {
+  return <>
+    {
+      {
+        "In progress": <div className="w-[100px] h-5 bg-[#FCE513] text-black flex items-center justify-center rounded-[5px] text-sm">{status}</div>,
+        "1st revision": <div className="w-[100px] h-5 bg-[#F4B000] text-black flex items-center justify-center rounded-[5px] text-sm">{status}</div>,
+        "2nd revision": <div className="w-[100px] h-5 bg-[#F47500] text-black flex items-center justify-center rounded-[5px] text-sm">{status}</div>,
+        default: <div className="w-[100px] h-5 bg-black text-white flex items-center justify-center rounded-[5px] text-sm">{status}</div>
+      }[status]
+    }
+  </>
+}
+
+const stringToColour = (str: string): string => {
+  var hash = 0;
+  for (var i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  var colour = '#';
+  for (var i = 0; i < 3; i++) {
+    var value = (hash >> (i * 8)) & 0xFF;
+    colour += ('00' + value.toString(16)).substr(-2);
+  }
+  return colour;
+}
+
+interface AvatarLetter {
+  name: string
+  color: string
+}
+
+const AvatarLetter = ({ name, color }: AvatarLetter) => {
+  return <div className="h-[22px] w-[22px] rounded-full flex justify-center items-center" style={{ backgroundColor: color }}>{name.charAt(0).toUpperCase()}</div>
+}
+
+const CardItem = ({
+  clientLogo,
+  approval,
+  client,
+  img,
+  owner,
+  status,
+  date }: CardItem) => {
+  return <div className="w-full flex py-[14px] px-4 h-[70px] border border-black rounded-[5px]">
+    <div className="text-black min-w-[72px]">
+      <Image
+        src={clientLogo}
+        alt="client-logo"
+        width={44}
+        height={44}
+      />
+    </div>
+    <div className="text-base text-black w-full whitespace-nowrap  overflow-hidden text-ellipsis mr-8 leading-[19.66px] font-bold flex items-center">
+      <p>{approval}</p>
+    </div>
+    <div className="text-black min-w-[180px] flex gap-2flex items-center">
+      <AvatarLetter name={client} color={stringToColour(client)} />
+      {client}
+    </div>
+    <div className="flex gap-[8.33px] text-black min-w-[162px] items-center">
+      <div className="w-[22px] h-[22px] rounded-full">
+        <Image
+          src={img}
+          alt="thumnail"
+          width={22}
+          height={22}
+        />
+      </div>
+      <p>{owner}</p>
+    </div>
+    <div className="text-black min-w-[164px] flex items-center">{date}</div>
+    <div className="min-w-[150px] flex items-center">
+      <CardLabel status={status} />
+    </div>
+  </div>
+}
 
 export default function Home() {
   return (
@@ -14,7 +104,244 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <header className="flex h-[65px]">
+        <aside className="min-w-[295px] w-[295px] bg-[#B8DCFF] p-[8px_77px_6px_83px]">
+          <p className="text-[40px] leading-[48.41px] h-[51px]">LOGO</p>
+        </aside>
+        <section className="flex w-full border border-black drop-shadow-[2px_2px_4px_0px_rgba(0,0,13,1)]">
+          <div className="h-full w-full">
+            <input
+              className="h-full w-full bg-[33px] outline-none px-[60px] bg-transparent text-black bg-[url('/search-icon.svg')] bg-no-repeat bg-scroll"
+              placeholder="Search anything here..."
+            />
+          </div>
+          <div className="flex justify-end items-center min-w-fit mr-[25px] gap-[25px]">
+            <div className="flex gap-[11px] flex-row w-fit">
+              <Image
+                src="/out-logo.svg"
+                alt="logout"
+                width={25}
+                height={20}
+                priority
+              />
+              <p className="text-base leading-5 text-[#EE0D0D] font-bold">Logout</p>
+            </div>
+            <Image
+              src="/hamburger-menu.svg"
+              alt="hamburger-menu"
+              width={25}
+              height={20}
+              priority
+            />
+          </div>
+        </section>
+      </header>
+      <main className="flex flex-row">
+        <aside className="pt-[56px] bg-[#8F8E8E] min-w-[295px] w-[295px] px-7 min-h-[calc(100vh_-_65px)]">
+          <section className="border-b border-white w-full pb-[29px]">
+            <div className="h-[63px] w-[63px] rounded-full bg-[#D9D9D9] mb-[17px]"></div>
+            <p className="text-base font-bold">Radhika Dhawan Puri</p>
+            <p className="text-sm">Senior Client Services</p>
+          </section>
+          <section className="border-b border-white w-full pt-[29px] pb-[46px]">
+            <p className="text-[11px] mb-3 uppercase">Navigation</p>
+            <div className="flex flex-col gap-[10px]">
+              <div className="flex gap-3">
+                <Image
+                  src="/dashboard.svg"
+                  alt="dashboard"
+                  width={15}
+                  height={15}
+                  priority
+                />
+                <p className="text-base font-bold leading-[19.66px] hover:text-[#1E67AF] cursor-pointer">Dashboard</p>
+              </div>
+              <div className="flex gap-3">
+                <Image
+                  src="/approval.svg"
+                  alt="approval"
+                  width={14.4}
+                  height={16}
+                  priority
+                />
+                <p className="text-base font-bold leading-[19.66px] hover:text-[#1E67AF] cursor-pointer">Approvals</p>
+              </div>
+            </div>
+          </section>
+          <section className="w-full pt-[29px]">
+            <p className="text-[11px] mb-3 uppercase">My Account</p>
+            <div className="flex flex-col gap-[10px]">
+              <div className="flex gap-3">
+                <Image
+                  src="/client.svg"
+                  alt="client"
+                  width={16.5}
+                  height={18.33}
+                  priority
+                />
+                <p className="text-base font-bold leading-[19.66px] hover:text-[#1E67AF] cursor-pointer">My Clients</p>
+              </div>
+              <div className="flex gap-3">
+                <Image
+                  src="/cog.svg"
+                  alt="profile"
+                  width={15.61}
+                  height={15}
+                  priority
+                />
+                <p className="text-base font-bold leading-[19.66px] hover:text-[#1E67AF] cursor-pointer">Edit profiles</p></div>
+            </div>
+          </section>
+        </aside>
+        <section className="p-[33px] w-[calc(100vw_-_292px)] h-full min-h-[calc(100vh_-_65px)]">
+          <header className="mb-11">
+            <h1 className="text-[#323A46] text-[28px] font-bold leading-[29.09px]">Hi Radhika, welcome back!</h1>
+          </header>
+          <article className="mb-14">
+            <header className="mb-6">
+              <h4 className="text-[#323A46] text-xl font-bold leading-[27.28px]">Your client list</h4>
+              <p className="text-[#323A46] text-sm leading-[19.1px]">You currently servicing 3 clients</p>
+            </header>
+            <section className="flex gap-[15px] flex-wrap">
+              <div className="w-[259px] h-[184px] border border-black rounded-[5px] p-[21px]">
+                <header className="flex justify-between h-[31px] mb-[9px]">
+                  <Image
+                    src="/dbs-logo.svg"
+                    alt="company-logo"
+                    width={99}
+                    height={28.87}
+                  />
+                  <Image
+                    src="/elipsis.svg"
+                    alt="menu"
+                    width={21}
+                    height={21}
+                    className="self-start relative top-[-15px] right-[-11px]"
+                  />
+                </header>
+                <article>
+                  <p className="text-[#323A46] font-bold text-base leading-[19.66px] mb-[6px]">DBS Bank</p>
+                  <p className="text-[#323A46] text-[11px] leading-[15px]">DBS Bank Limited is a Singaporean multinational banking and financial services corporation headquartered at the Marina Bay Financial Centre in the Marina Bay district of Singapore.</p>
+                </article>
+              </div>
+              <div className="w-[259px] h-[184px] border border-black rounded-[5px] p-[21px]">
+                <header className="flex justify-between h-[31px] mb-[9px] relative">
+                  <Image
+                    src="/proudfoot-logo.svg"
+                    alt="company-logo"
+                    width={70}
+                    height={47}
+                    className="min-h-[47px] relative top-[-10px]"
+                  />
+                  <Image
+                    src="/elipsis.svg"
+                    alt="menu"
+                    width={21}
+                    height={21}
+                    className="self-start relative top-[-15px] right-[-11px]"
+                  />
+                </header>
+                <article>
+                  <p className="text-[#323A46] font-bold text-base leading-[19.66px] mb-[6px]">Proudfoot</p>
+                  <p className="text-[#323A46] text-[11px] leading-[15px]">Proudfoot engages teams and leadership, at all levels, to create innovative solutions to operational constraints and solve the people challenge associated with making sure that change takes place.</p>
+                </article>
+              </div>
+              <div className="w-[259px] h-[184px] border border-black rounded-[5px] p-[21px]">
+                <header className="flex justify-between h-[31px] mb-[9px]">
+                  <Image
+                    src="/rmi-logo.svg"
+                    alt="company-logo"
+                    width={169}
+                    height={26}
+                  />
+                  <Image
+                    src="/elipsis.svg"
+                    alt="menu"
+                    width={21}
+                    height={21}
+                    className="self-start relative top-[-15px] right-[-11px]"
+                  />
+                </header>
+                <article>
+                  <p className="text-[#323A46] font-bold text-base leading-[19.66px] mb-[6px]">RMI</p>
+                  <p className="text-[#323A46] text-[11px] leading-[15px]">RMI is a trusted global verification partner for Asia-Pacific organisations, offering a highly personalised and comprehensive background screening service.</p>
+                </article>
+              </div>
+            </section>
+          </article>
+          <article>
+            <header className="mb-6 flex justify-between items-center">
+              <div>
+                <h4 className="text-[#323A46] text-xl font-bold leading-[27.28px]">Recent approvals</h4>
+                <p className="text-[#323A46] text-sm leading-[19.1px]">You can find the recent on-going approvals here</p>
+              </div>
+              <button className="text-base font-bold text-black flex items-center gap-[9px] py-[3px] px-[25px] h-8 border border-black rounded-[53px]">
+                <Image
+                  src="/plus.svg"
+                  alt="plus"
+                  width={14}
+                  height={14}
+                />
+                Create new approval
+              </button>
+            </header>
+            <section>
+              <header className="flex py-[14px] px-4 border border-black rounded-[5px] mb-[13px] ">
+                <div className="text-black text-sm min-w-[72px]">
+                  Clients
+                </div>
+                <div className="text-black text-sm  w-full">
+                  Approval Name
+                </div>
+                <div className="text-black text-sm min-w-[180px]">
+                  Client contact
+                </div>
+                <div className="text-black text-sm min-w-[162px]">
+                  Owner
+                </div>
+                <div className="text-black text-sm min-w-[164px]">Date Issued</div>
+                <div className="text-black text-sm min-w-[150px]">
+                  Status
+                </div>
+              </header>
+              <main className="flex flex-col gap-[13px] mb-[15px]">
+                <CardItem
+                  clientLogo="/dbs-client.svg"
+                  approval="DBS DEG renewal energy LinkedIn post tiles... "
+                  client="Jasmine"
+                  img="/image.png"
+                  owner="Radhika"
+                  date="January 23, 2022"
+                  status="In progress" />
+                <CardItem
+                  clientLogo="/proudfoot-client.svg"
+                  approval="PF website mining and metals edit"
+                  client="Lorena"
+                  img="/image.png"
+                  owner="Radhika"
+                  date="January 23, 2022"
+                  status="1st revision" />
+                <CardItem
+                  clientLogo="/rmi-client.svg"
+                  approval="RMI January newletter EDM"
+                  client="Mervyn"
+                  img="/image.png"
+                  owner="Radhika"
+                  date="January 23, 2022"
+                  status="2nd revision"
+                />
+              </main>
+              <footer className="text-base font-bold text-[#1E67AF]">
+                See all approvals here
+              </footer>
+            </section>
+          </article>
+          <footer className="absolute bottom-[25px] right-9">
+            <p className="text-[#484848] text-sm leading-[19.1px] relative">© Manning&Co. 2022</p>
+          </footer>
+        </section>
+      </main >
+      {/* <main className={styles.main}>
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
@@ -117,7 +444,7 @@ export default function Home() {
             </p>
           </a>
         </div>
-      </main>
+      </main> */}
     </>
   )
 }
