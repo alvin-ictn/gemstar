@@ -338,7 +338,7 @@ export default function Home() {
               </footer>
             </section>
           </article>
-          <footer className="relative bottom-[25px] right-9">
+          <footer className="absolute bottom-[25px] right-9">
             <Text type="sub" className="relative">© Manning&Co. 2022</Text>
           </footer>
         </section>
